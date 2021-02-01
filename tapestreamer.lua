@@ -49,8 +49,9 @@ print("type y to confirm write operation")
  
 if io.read() == "y" --write to tape if the user confirms
 then
-    tape_drive.seek(-1000000) --rewind tape
+    tape_drive.seek(tape_drive.getSize() * -1) --rewind tape
     tape_drive.write(payload) --write file to the tape
+    tape_drive.seek(tape_drive.getSize() * -1) --rewind tape again for convenience
     print("Tape Write Complete") 
     return
 end
